@@ -12,7 +12,6 @@ public class Main {
     static JFrame jFrame = getFrame();
     static String Goal = "";
     static List<Task> curTasks = new ArrayList<>();
-    static int curTasksSize = curTasks.size();
 
 
 
@@ -33,7 +32,6 @@ public class Main {
         JLabel taskInfoLabel = new JLabel("Task");
         JLabel curListLabel = new JLabel("Current Tasks");
 
-        for (Task task2 : curTasks) task2.getData();
         for (int i = 0; i < curTasks.size(); i++)
             defaultCurListModel.addElement(curTasks.get(i).taskName);
 
@@ -93,7 +91,7 @@ public class Main {
     //getFrame creating Frame
     static JFrame getFrame() {
         JFrame jFrame = new JFrame();
-        jFrame.setVisible(true);
+        jFrame.setVisible(false);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Toolkit Toolkit = java.awt.Toolkit.getDefaultToolkit();
         Dimension dimension = Toolkit.getScreenSize();
@@ -110,6 +108,7 @@ public class Main {
         FileOutputStream fos = new FileOutputStream("buffer.bin");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
+        int curTasksSize = curTasks.size();
         oos.writeInt(curTasksSize);
         for (Task task1 : curTasks) oos.writeObject(task1);
         fos.close();
@@ -122,7 +121,6 @@ public class Main {
         for (int i = 0; i < curTasksSize; i++) {
             Task task1 = (Task) ois.readObject();
             curTasks.add(task1);
-            task1.getData();
 
         }
 

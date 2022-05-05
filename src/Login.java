@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
-    private String pass = "artemHELOOY1";
+    private String pass = "qwerty";
     public Login(){
         setTitle("Log IN");
         setBounds(400, 250, 750, 500);
@@ -28,7 +28,7 @@ public class Login extends JFrame {
         apply.setSize(80, 36);
         apply.setLocation(522, 235);
         add(apply);
-        setVisible(false);
+        setVisible(true);
         String a = String.valueOf(jPasswordField.getPassword());
         apply.addActionListener(new ActionListener() {
             @Override
