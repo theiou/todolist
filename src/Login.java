@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
-    private String pass = "qwerty";
+    private String pass = "qwe";
     public Login(){
         setTitle("Log IN");
         setBounds(400, 250, 750, 500);

@@ -18,7 +18,6 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Login login = new Login();
         TaskPanel taskPanel = new TaskPanel();
-
         ReadData();
         //verstka--------------------
         JButton addButton = new JButton("add");
@@ -53,6 +52,7 @@ public class Main {
         taskInfoLabel.setBounds(30, 57, 50, 25);
         curList.setBounds(425, 60, 200, 200);
         curListLabel.setBounds(425, 35, 100, 25);
+        doneButton.setBounds(550, 30, 75, 25);
         //logics----------
         //addButton
         addButton.addActionListener(new ActionListener() {
@@ -75,13 +75,24 @@ public class Main {
         //curList
         curList.setLayoutOrientation(curList.VERTICAL_WRAP);
         curList.setSelectionMode(0);
-        curList.setLayoutOrientation(curList.VERTICAL);
         curList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2){
                     taskPanel.getIndexedTask(curTasks.get(curList.getSelectedIndex()));
-                    taskPanel.setVisible(true);
+                }
+            }
+        });
+        //doneButton
+        doneButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                curTasks.remove(curList.getSelectedIndex());
+                defaultCurListModel.remove(curList.getSelectedIndex());
+                try {
+                    WriteData();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         });
@@ -113,7 +124,7 @@ public class Main {
         for (Task task1 : curTasks) oos.writeObject(task1);
         fos.close();
     }
-//fix
+
     static public void ReadData() throws ClassNotFoundException, IOException {
         FileInputStream fis = new FileInputStream("buffer.bin");
         ObjectInputStream ois = new ObjectInputStream(fis);

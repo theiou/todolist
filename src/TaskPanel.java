@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TaskPanel extends JFrame {
     JTextField taskName = new JTextField();
@@ -14,7 +16,8 @@ public class TaskPanel extends JFrame {
         add(taskName);
         add(taskInfo);
 
-        taskName.setBounds(85, 20, 200, 25);
+
+        taskName.setBounds(35, 20, 200, 25);
         taskInfo.setBounds(35, 50, 300, 175);
         taskInfo.setEditable(false);
         taskName.setEditable(false);
@@ -25,4 +28,5 @@ public class TaskPanel extends JFrame {
         taskName.setText(task.taskName);
         taskInfo.setText(task.taskInfo);
     }
+
 }
